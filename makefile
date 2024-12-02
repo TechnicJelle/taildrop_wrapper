@@ -14,7 +14,7 @@ build:
 	@echo -e "$(BOLD)Build successful! Now to install, run 'sudo make install'$(NC)"
 
 yad-installed:
-	@which yad &> /dev/null || (echo -e "$(RED)yad is not installed. Please install yad first.$(NC)" && exit 1)
+	@command -v yad &> /dev/null || (echo -e "$(RED)yad is not installed. Please install yad first.$(NC)" && exit 1)
 
 install: yad-installed
 	install -m 755 $(OUTPUT) $(INSTALL_PATH)
