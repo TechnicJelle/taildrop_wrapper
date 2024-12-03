@@ -2,7 +2,7 @@
 Type=Application
 Version=1.0
 Exec=taildrop_wrapper %F
-Icon=dev.deedles.Trayscale
+Icon=taildrop_wrapper
 Name=Taildrop
 Comment=Send file(s) to a Tailscale connected device
 Terminal=false

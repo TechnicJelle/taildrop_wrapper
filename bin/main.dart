@@ -10,7 +10,7 @@ void showError(final String message, {final String? log}) {
   }
   final ProcessResult yadResult = Process.runSync("yad", [
     "--title=Taildrop",
-    "--window-icon=dev.deedles.Trayscale",
+    "--window-icon=taildrop_wrapper",
     "--center",
     "--image=dialog-error",
     "--text=$message",
@@ -86,7 +86,7 @@ void main(List<String> arguments) {
   final ProcessResult yadResult = Process.runSync("yad", [
     "--list",
     "--title=Taildrop to Device",
-    "--window-icon=dev.deedles.Trayscale",
+    "--window-icon=taildrop_wrapper",
     "--center",
     "--text=<span font='Monospace'>$prettyFilesList</span>\n"
         "Select a device to send the file(s) to:",
@@ -121,7 +121,7 @@ void main(List<String> arguments) {
   // Notify user that the transfer is done
   Process.runSync("notify-send", [
     "-i",
-    "dev.deedles.Trayscale",
+    "taildrop_wrapper",
     "Taildrop",
     "File(s) transferred successfully",
   ]);
