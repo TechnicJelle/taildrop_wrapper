@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Exec=taildrop_wrapper %F
+Icon=dev.deedles.Trayscale
+Name=Taildrop
+Comment=Send file(s) to a Tailscale connected device
+Terminal=false
+StartupNotify=false
