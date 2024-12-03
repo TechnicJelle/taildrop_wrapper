@@ -20,6 +20,10 @@ build:
 yad-installed:
 	@command -v yad &> /dev/null || (echo -e "$(RED)yad is not installed. Please install yad first.$(NC)" && exit 1)
 
+fm-integrate: thunar-integration
+
+fm-integration-uninstall: thunar-integration-uninstall
+
 thunar-integration:
 	@if command -v thunar &> /dev/null; then \
 		mkdir -p $(THUNAR_INTEGRATION_DIR); \
@@ -31,6 +35,7 @@ thunar-integration-uninstall:
 
 install: yad-installed
 	install -m 755 $(OUTPUT) $(INSTALL_PATH)
+	@echo -e "$(BOLD)Install successful! Now you can optionally integrate with your file manager(s) by running 'make fm-integrate'$(NC)"
 
 clean:
 	rm -rf $(BUILD_DIR)
@@ -38,4 +43,4 @@ clean:
 uninstall:
 	rm $(INSTALL_PATH)
 
-.PHONY: build yad-installed thunar-integration thunar-integration-uninstall install clean uninstall
+.PHONY: build yad-installed fm-integrate fm-integrate-uninstall thunar-integration thunar-integration-uninstall install clean uninstall
