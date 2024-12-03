@@ -25,12 +25,11 @@ void main(List<String> arguments) {
   if (arguments.isEmpty) {
     showError(
       "No file provided.\n"
-      "Usage:<span font='Monospace'> taildrop_wrapper &lt;file&gt;</span>",
-      log: "No file provided.\nUsage: taildrop_wrapper <file>",
+      "Usage:<span font='Monospace'> taildrop_wrapper &lt;file(s)&gt;</span>",
+      log: "No file provided.\nUsage: taildrop_wrapper <file(s)>",
     );
     exit(1);
   }
-  final String fileToSend = arguments[0];
 
   // Get devices from Tailscale
   final ProcessResult result;
@@ -77,6 +76,9 @@ void main(List<String> arguments) {
   }
 
   // Show devices in a dialog
+  final String prettyFilesList = arguments.length == 1
+      ? arguments.first
+      : arguments.map((str) => " - $str").join("\n");
   final List<String> yadList = [];
   for (final Device device in devices) {
     yadList.addAll([device.name, device.account, device.os, device.ip, device.extra]);
@@ -86,8 +88,8 @@ void main(List<String> arguments) {
     "--title=Taildrop to Device",
     "--window-icon=dev.deedles.Trayscale",
     "--center",
-    "--text=<span font='Monospace'>$fileToSend</span>\n"
-        "Select a device to send the file to:",
+    "--text=<span font='Monospace'>$prettyFilesList</span>\n"
+        "Select a device to send the file(s) to:",
     "--column=Name",
     "--column=Account",
     "--column=OS",
@@ -104,11 +106,11 @@ void main(List<String> arguments) {
   final String deviceName = yadOutput.split("|").first.trim();
 
   //Send file to selected device
-  print("Sending file: $fileToSend\n\tto: $deviceName");
+  print("Sending to: $deviceName\n$prettyFilesList");
   final ProcessResult sendResult = Process.runSync("tailscale", [
     "file",
     "cp",
-    fileToSend,
+    ...arguments,
     "$deviceName:",
   ]);
   if (sendResult.exitCode != 0) {
