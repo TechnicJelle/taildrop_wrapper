@@ -23,7 +23,7 @@ After that, you can run `sudo make install` to actually install the script to `/
 You can even integrate it with your file manager(s) by running `make fm-integrate`.  
 
 Currently supported file managers are:
-- [Thunar](https://docs.xfce.org/xfce/thunar/start)
+- [Thunar](https://docs.xfce.org/xfce/thunar/start): Right click something, and select **Send To** > **Taildrop**
 - _Please feel free to PR more!_
 
 ```bash
