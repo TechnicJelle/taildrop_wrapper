@@ -1,3 +1,5 @@
+<img align="left" width="72px" src="extra/icon1024.png" alt="logo">
+
 # Taildrop Wrapper
 
 A small script around the [Tailscale](https://tailscale.com/) [CLI](https://tailscale.com/kb/1080/cli)
