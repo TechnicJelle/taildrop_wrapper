@@ -115,4 +115,12 @@ void main(List<String> arguments) {
     showError("An error occurred:\n${sendResult.stderr}");
     exit(sendResult.exitCode);
   }
+
+  // Notify user that the transfer is done
+  Process.runSync("notify-send", [
+    "-i",
+    "dev.deedles.Trayscale",
+    "Taildrop",
+    "File(s) transferred successfully",
+  ]);
 }
