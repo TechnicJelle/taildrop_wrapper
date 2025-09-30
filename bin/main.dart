@@ -61,6 +61,7 @@ void main(List<String> arguments) {
 
   final List<Device> devices = [];
   for (final String line in lines) {
+    if (line.startsWith("#")) continue;
     final RegExpMatch? match = extractInfoRegex.firstMatch(line);
     if (match != null) {
       if (match.namedGroup("Extra")!.toLowerCase().contains("offline")) continue;
