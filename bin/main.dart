@@ -1,3 +1,4 @@
+import "dart:convert";
 import "dart:io";
 
 typedef Device = ({String ip, String name, String account, String os, String extra});
@@ -79,9 +80,10 @@ void main(List<String> arguments) {
   }
 
   // Show devices in a dialog
+  final escaper = HtmlEscape();
   final String prettyFilesList = arguments.length == 1
-      ? arguments.first
-      : arguments.map((str) => " - $str").join("\n");
+      ? escaper.convert(arguments.first)
+      : arguments.map((str) => " - ${escaper.convert(str)}").join("\n");
   final List<String> yadList = [];
   for (final Device device in devices) {
     yadList.addAll([device.name, device.account, device.os, device.ip, device.extra]);
