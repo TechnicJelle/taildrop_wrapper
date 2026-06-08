@@ -64,13 +64,15 @@ void main(List<String> arguments) {
     if (line.startsWith("#")) continue;
     final RegExpMatch? match = extractInfoRegex.firstMatch(line);
     if (match != null) {
-      if (match.namedGroup("Extra")!.toLowerCase().contains("offline")) continue;
+      String extra = match.namedGroup("Extra")!.trim();
+      if (extra.toLowerCase().contains("offline")) continue;
+      if (extra == "-") extra = " ";
       final Device device = (
         ip: match.namedGroup("IP")!,
         name: match.namedGroup("Name")!,
         account: match.namedGroup("Account")!,
         os: match.namedGroup("OS")!,
-        extra: match.namedGroup("Extra")!,
+        extra: extra,
       );
       devices.add(device);
     }
