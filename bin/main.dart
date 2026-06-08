@@ -80,10 +80,11 @@ void main(List<String> arguments) {
   }
 
   // Show devices in a dialog
-  final escaper = HtmlEscape();
   final String prettyFilesList = arguments.length == 1
-      ? escaper.convert(arguments.first)
-      : arguments.map((str) => " - ${escaper.convert(str)}").join("\n");
+      ? arguments.first
+      : arguments.map((str) => " - $str").join("\n");
+  final escaper = HtmlEscape();
+  final String escapedFilesList = escaper.convert(prettyFilesList);
   final List<String> yadList = [];
   for (final Device device in devices) {
     yadList.addAll([device.name, device.account, device.os, device.ip, device.extra]);
@@ -93,7 +94,7 @@ void main(List<String> arguments) {
     "--title=Taildrop to Device",
     "--window-icon=taildrop_wrapper",
     "--center",
-    "--text=<span font='Monospace'>$prettyFilesList</span>\n"
+    "--text=<span font='Monospace'>$escapedFilesList</span>\n"
         "Select a device to send the file(s) to:",
     "--column=Name",
     "--column=Account",
